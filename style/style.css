@@ -2,7 +2,7 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap'); */
 
 /* @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Montserrat:wght@600&display=swap'); */
-
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@200&display=swap');
 
 /* .littleicon{
     width: 10px;
@@ -16,21 +16,36 @@ body {
     /* margin: 0; */
     /* font-family: 'Josefin Sans', sans-serif; */
 }
-#headerbar{
 
+#headerbar {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    /* background-color: white; */
+    margin-bottom: 100px;
 }
 
-#linksbar{
+#linksbar {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    margin-right: 10%;
 }
-#linksbar a{
+
+#linksbar a {
+    font-family: 'Exo 2', sans-serif;
+    font-size: large;
     margin-left: 20px;
     margin-right: 20px;
+    /* cursor: none; */
+}
+
+#linksbar a :hover {
+    /* font-size: larger; */
+    text-decoration: overline;
+    /* text-decoration: underline; */
+    /* cursor: none; */
 }
 
 #logo {
@@ -48,7 +63,7 @@ body {
     height: 100vh; */
 }
 
- a{
+a {
     color: black;
     font-weight: bold;
     text-decoration: none;
@@ -74,17 +89,20 @@ align-content: end;
     width: 10px;
     height: 10px;
 } */
-#sm{    
+#sm {
     width: 15px;
     height: 15px;
 }
+
 .container {
-    text-align: center;
+    text-align: right;
 }
+
 .gennadi-img {
-    width: 90%;
+    /* size: 60%; */
+    width: 30%;
     margin-right: 10px;
-    border-radius: 10px;
+    border-radius: 20px;
     /* opacity: 0.9; */
     /* height: 200px; */
 }
