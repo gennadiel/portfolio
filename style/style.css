@@ -43,6 +43,8 @@ body {
 
 #linksbar a :hover {
     /* font-size: larger; */
+    color: orange;
+    transition: 1s;
     text-decoration: overline;
     /* text-decoration: underline; */
     /* cursor: none; */
@@ -100,7 +102,7 @@ align-content: end;
 
 .gennadi-img {
     /* size: 60%; */
-    width: 30%;
+    width: 25%;
     margin-right: 10px;
     border-radius: 20px;
     /* opacity: 0.9; */
