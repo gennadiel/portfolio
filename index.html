@@ -14,40 +14,39 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;900&display=swap" rel="stylesheet">
     <!-- <script src="/js/translations.js"></script> -->
+
+    <!-- Импорт и вызов функции из services.js -->
+    <script type="module" src="/js/services.js"></script>
+    
 </head>
 
 <body>
-
-    <div id="headerbar">
-
-        <span id="logo">Геннадий Ельцов</span>
+    <!-- Вызов функции getHeaderTemplate() -->
+    <script type="module">
+        import { getHeaderTemplate } from "/js/services.js";
+        getHeaderTemplate();
+    </script>
+    
+    <!-- <div id="headerbar">
+        <span id="logo"><a href="/index.html">Геннадий Ельцов</a></span>
         <div id="linksbar">
-
-            <a href="/index.html">
+            <a href="/pages/bio.html">
                 <div id="home">
                     <p>Биография</p>
                 </div>
             </a>
-            <a href="/index.html">
+            <a href="/pages/publications.html">
                 <div id="home">
                     <p>Статьи</p>
                 </div>
             </a>
-            <a href="/pages/gallery/gallery.html">
+            <a href="/pages/gallery.html">
                 <div id="home">
                     <p>Галерея</p>
                 </div>
             </a>
-            <!-- <a href="/index.html">
-            <div id="home">
-                <p>Hа главную</p>
-            </div>
-        </a>  -->
-
         </div>
-
-
-    </div>
+    </div> -->
 
 
 

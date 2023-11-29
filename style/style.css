@@ -3,7 +3,7 @@
 
 /* @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Montserrat:wght@600&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@200&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600;900&display=swap");
 /* .littleicon{
     width: 10px;
     height: 10px;
@@ -13,7 +13,7 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    /* margin: 0; */
+    /* margin: 10px;  */
     /* font-family: 'Josefin Sans', sans-serif; */
 }
 
@@ -22,6 +22,7 @@ body {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    padding-top: 10px;
     /* background-color: white; */
     margin-bottom: 100px;
 }
@@ -107,4 +108,21 @@ align-content: end;
     border-radius: 20px;
     /* opacity: 0.9; */
     /* height: 200px; */
+}
+
+#gallery{
+    display: flex;
+    flex-wrap: wrap;
+}
+#gallery img{
+    padding: 10px;
+    width: 300px;
+    height: 300px;
+    /* border-radius: 10px; */
+    /* border-style: initial; */
+}
+
+#key{
+    height: 20px;
+    width: 20px;
 }
