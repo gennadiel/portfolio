@@ -18,6 +18,8 @@ export const headerTemplate = `<div id="headerbar">
             </a>
         </div>
         <div>
-            <img id="key" src="/style/img/key_FILL0_wght400_GRAD0_opsz24.png" alt="key">
+            <a href="/pages/signin.html">
+                <img id="key" src="/style/img/key_FILL0_wght400_GRAD0_opsz24.png" alt="key">
+            </a>
         </div>
     </div>`;
