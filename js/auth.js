@@ -31,6 +31,8 @@ export function signIn(email, password) {
             if (user) {
                 // User is signed in.
                 console.log(user);
+                //TODO change to real address!
+                window.location.replace("http://127.0.0.1:3000/pages/admin.html");
                 if (user != null) {
                     name = user.displayName;
                     email = user.email;
@@ -41,27 +43,41 @@ export function signIn(email, password) {
                     // this value to authenticate with your backend server, if
                     // you have one. Use User.getToken() instead.
                     window.alert('$email is signed in.')
+                    // Перенаправляем на новую страницу
+                    
+
                 }
             } else {
                 window.alert('Error');
             }
-            
+
             // ...
         })
         .catch((error) => {
-            
+
             const errorCode = error.code;
             console.log(errorCode);
             const errorMessage = error.message;
             console.log(errorMessage);
-            if (errorMessage=="Firebase: Error (auth/invalid-email)."){
+            if (errorMessage == "Firebase: Error (auth/invalid-email).") {
                 window.alert('INVALID EMAIL');
             }
-            else if (errorMessage=="Firebase: Error (auth/invalid-credential)."){
+            else if (errorMessage == "Firebase: Error (auth/invalid-credential).") {
                 window.alert('INVALID PASSWORD');
             }
         });
 }
+
+export function isUserSignedIn() {
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            console.log('User Is signed in');
+        } else {
+            console.log('User Is NOT signed in');
+        }
+    });
+}
+
 // export function signIn(email, password) {
 //     signInWithEmailAndPassword(email, password).catch(function (error) {
 //         // Handle Errors here.
