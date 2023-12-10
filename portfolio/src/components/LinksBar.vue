@@ -15,16 +15,36 @@
                 <p>Галерея</p>
             </div>
         </a>
+        <div id="home" v-if="isLogged">
+            <p>ADD</p>
+        </div>
+        <div id="home" v-if="!isLogged">
+            <p>Out</p>
+        </div>
     </div>
 </template>
 
 
 <script>
+
+// import store from '@/main.js'
+
 export default {
     name: 'LinksBar',
-    components: {
+    data() {
+        return {
+            // isLogged: null,
+        }
+    },
+    // components: {
 
-    }
+    // },
+    computed: {
+        isLogged() {
+            // Используйте геттер из Vuex для получения значения isLogged
+            return this.$store.getters.isLogged;
+        },
+    },
 }
 </script>
 

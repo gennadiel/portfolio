@@ -1,7 +1,7 @@
 
 <template>
     <div id="footer">
-        <p>&copy; 2023 Геннадий Ельцов</p>
+        <p><span @click="moveToLogin">&copy;</span> 2023 Геннадий Ельцов</p>
     </div>
 </template>
 
@@ -11,6 +11,11 @@ export default {
     name: 'PageFooter',
     components: {
 
+    },
+    methods:{
+        moveToLogin(){
+            this.$router.push('/login')
+        }
     }
 }
 </script>

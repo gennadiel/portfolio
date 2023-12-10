@@ -1,8 +1,8 @@
 <template>
-  <div id="headerbar"><HeaderLogo />
-  <LinksBar/></div>
-  
-  
+  <div id="headerbar">
+    <HeaderLogo />
+    <LinksBar />
+  </div>
 </template>
 
 
@@ -13,7 +13,10 @@ export default {
   name: 'HeaderBar',
   components: {
     HeaderLogo, LinksBar
-  }
+  },
+  // beforeMount: ()=>{
+
+  // }
 }
 </script>
 
@@ -25,6 +28,4 @@ export default {
   align-items: center;
   padding-top: 10px;
 }
-
-
 </style>
