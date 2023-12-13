@@ -1,6 +1,6 @@
 <template>
     <!-- LOGO -->
-    <span id="logo">Геннадий Ельцов</span>
+    <span id="logo" @click="$router.push('/')">Геннадий Ельцов</span>
 </template>
 
 <script>
@@ -17,6 +17,7 @@ export default {
     padding: 20px;
     margin: 30px;
     border-style: solid;
+    cursor: pointer;
 
     /* font-size: 40px;
     display: flex;

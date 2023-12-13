@@ -1,88 +1,78 @@
 <template>
     <div id="linksbar">
-        <a href="/pages/bio.html">
-            <div id="home">
+        <!-- <a href="/pages/bio.html"> -->
+            <div class="link" @click="$router.push('/bio')">
                 <p>Биография</p>
             </div>
-        </a>
-        <a href="/pages/publications.html">
-            <div id="home">
+        <!-- </a> -->
+        <!-- <a href="/pages/publications.html"> -->
+            <div class="link" @click="$router.push('/publications')">
                 <p>Статьи</p>
             </div>
-        </a>
-        <a href="/pages/gallery.html">
-            <div id="home">
+        <!-- </a> -->
+        <!-- <a href="/pages/gallery.html"> -->
+            <div class="link" @click="$router.push('/gallery')">
                 <p>Галерея</p>
             </div>
-        </a>
-        <div id="home" v-if="isLogged">
-            <p>ADD</p>
+        <!-- </a> -->
+        <div class="link" v-if="isLogged" @click="logOut">
+            <p>Выйти</p>
         </div>
-        <div id="home" v-if="!isLogged">
-            <p>Out</p>
+        <div class="link" v-if="!isLogged" @click="logIn">
+            <p>Войти</p>
         </div>
     </div>
 </template>
 
-
 <script>
-
-// import store from '@/main.js'
-
 export default {
     name: 'LinksBar',
     data() {
-        return {
-            // isLogged: null,
-        }
+        return {}
     },
-    // components: {
-
-    // },
     computed: {
         isLogged() {
-            // Используйте геттер из Vuex для получения значения isLogged
             return this.$store.getters.isLogged;
+        },
+    },
+    methods: {
+        logIn() {
+            // Реализуйте логику входа
+        },
+        logOut() {
+            // Реализуйте логику выхода
+            this.$router.push('/');
         },
     },
 }
 </script>
 
-
 <style>
 #linksbar {
-    /* display: flex;
-    flex-direction: row; */
-
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding-top: 10px;
-
-
     flex-wrap: wrap;
     margin-right: 10%;
 }
 
-#linksbar a {
+.link {
     font-family: 'Exo 2', sans-serif;
     font-size: large;
     margin-left: 20px;
     margin-right: 20px;
-    /* cursor: none; */
+    cursor: pointer;
 }
 
-#linksbar a :hover {
-    /* font-size: larger; */
+.link:hover {
     color: orange;
     transition: 1s;
     text-decoration: overline;
-    /* text-decoration: underline; */
-    /* cursor: none; */
 }
 
-a {
+.link {
     color: black;
     font-weight: bold;
     text-decoration: none;
