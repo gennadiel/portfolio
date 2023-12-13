@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { getAuth } from "firebase/auth";
 export default {
     name: 'LinksBar',
     data() {
@@ -37,10 +38,16 @@ export default {
     },
     methods: {
         logIn() {
-            // Реализуйте логику входа
+            this.$router.push('/login')
         },
         logOut() {
-            // Реализуйте логику выхода
+            const auth = getAuth();
+            console.log(auth);
+            auth.signOut().then((p) => {
+                console.log(p);
+                }
+            )
+            this.$store.dispatch('logOut');
             this.$router.push('/');
         },
     },
