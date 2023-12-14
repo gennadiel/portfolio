@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import { createStore } from 'vuex'
 import { initializeApp } from 'firebase/app';
+// import { getDatabase } from "firebase/database";
 
 // Create a new store instance.
 const store = createStore({
@@ -41,6 +42,7 @@ const store = createStore({
 const firebaseConfig = {
     apiKey: "AIzaSyAjdnYQIhHawLRWsFjyfvb28Nv3r65DeJ0",
     authDomain: "gennady-website.firebaseapp.com",
+    databaseURL: "https://gennady-website-default-rtdb.europe-west1.firebasedatabase.app",
     projectId: "gennady-website",
     storageBucket: "gennady-website.appspot.com",
     messagingSenderId: "850191528241",
@@ -51,6 +53,9 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 
 const app = createApp(App)
+// Initialize Realtime Database and get a reference to the service
+// export const database = getDatabase(app);
+
 app.use(router)
 app.use(store)
 
