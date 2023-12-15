@@ -4,6 +4,8 @@ import LoginView from '../views/LoginView.vue'
 import GalleryView from '@/views/GalleryView'
 import PublicationsView from '@/views/PublicationsView'
 import BioView from '@/views/BioView'
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { store } from '@/main.js'
 
 const routes = [
   {
@@ -31,7 +33,7 @@ const routes = [
     name: 'bio',
     component: BioView
   },
-  
+
   // {
   //   path: '/about',
   //   name: 'about',
@@ -47,5 +49,19 @@ const router = createRouter({
   routes
 })
 // router.
+router.beforeEach(function () {
+  console.log('page changed');
+  const auth = getAuth();
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      console.log('IN');
+      console.log(user.email);
+      store.dispatch('logIn');
+    } else {
+      console.log('OUT');
+      store.dispatch('logOut');
+    }
+  })
+});
 
 export default router

@@ -18,9 +18,9 @@
         <div class="link" v-if="isLogged" @click="logOut">
             <p>Выйти</p>
         </div>
-        <div class="link" v-if="!isLogged" @click="logIn">
+        <!-- <div class="link" v-if="!isLogged" @click="logIn">
             <p>Войти</p>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -40,13 +40,14 @@ export default {
         logIn() {
             this.$router.push('/login')
         },
-        logOut() {
+        async logOut() {
             const auth = getAuth();
             console.log(auth);
-            auth.signOut().then((p) => {
-                console.log(p);
-                }
-            )
+            await auth.signOut();
+            // .then((p) => {
+            //     console.log(p);
+            //     }
+            // )
             this.$store.dispatch('logOut');
             this.$router.push('/');
         },

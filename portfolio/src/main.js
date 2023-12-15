@@ -6,7 +6,7 @@ import { initializeApp } from 'firebase/app';
 // import { getDatabase } from "firebase/database";
 
 // Create a new store instance.
-const store = createStore({
+export const store = createStore({
     state () {
       return {
         // count: 0,
@@ -51,6 +51,12 @@ const firebaseConfig = {
 };
 
 initializeApp(firebaseConfig);
+
+// $( document ).ready(function() {
+//   console.log( "testing.." );
+//   var user = firebase.auth().currentUser;
+//   console.log(user);
+// });
 
 const app = createApp(App)
 // Initialize Realtime Database and get a reference to the service

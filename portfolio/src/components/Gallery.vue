@@ -1,13 +1,13 @@
 <template>
-  <div>
+  <div v-if="isLogged">
     <form @submit.prevent="submitFile">
       <input type="file" ref="file" />
-      <input type="text" ref="caption" />
+      <input type="text" ref="caption" placeholder="Описание"/>
       <button type="submit">Загрузить Фото!</button>
     </form>
-
   </div>
-  <div>
+
+  <div class="gallery-container">
     <div class="thumbnail">
       <div v-for="(item, index) in images" :key="index" @click="openImage(item.path)">
         <img :src='item.path' alt="Image" class="thumbnail">
@@ -28,7 +28,6 @@
 
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { getDatabase, set, ref as dbRef, push as pushDb, onValue } from "firebase/database";
-// import { database } from '@/main.js'
 
 export default {
   name: 'GalleryBody',
@@ -42,6 +41,11 @@ export default {
       ],
       selectedImage: null,
     };
+  },
+  computed: {
+    isLogged() {
+      return this.$store.getters.isLogged;
+    },
   },
   mounted() {
     // console.log(`the component is now mounted.`)
@@ -120,13 +124,31 @@ export default {
 </script>
 
 <style scoped>
-.thumbnail {
-  width: 100px;
+/* .thumbnail {
+  width: 50cap;
   height: auto;
   cursor: pointer;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   margin-right: 10px;
+} */
+.gallery-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.thumbnail {
+  width: 100%; /* Используйте 100% ширины для гибкости */
+  max-width: 200px; /* Максимальная ширина для каждой миниатюры */
+  height: auto;
+  cursor: pointer;
+  margin-right: 10px;
+  margin-bottom: 10px; /* Добавьте отступ снизу для создания новой строки */
+  box-sizing: border-box; /* Учтите padding и border в ширине элемента */
+}
+
+form {
+  width: 100%;
 }
 
 .modal {
