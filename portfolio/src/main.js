@@ -6,7 +6,7 @@ import { initializeApp } from 'firebase/app';
 // import { getDatabase } from "firebase/database";
 
 // Create a new store instance.
-export const store = createStore({
+export  const store = createStore({
     state () {
       return {
         // count: 0,

@@ -1,18 +1,71 @@
 <template>
   <div v-if="isLogged">
-    <form @submit.prevent="submitFile">
+    <form @submit.prevent="submitFile" class="upload-form">
       <input type="file" ref="file" />
-      <input type="text" ref="caption" placeholder="Описание"/>
+
+      <!-- <button @click="toggleList">Категория</button>
+
+      <transition name="slide-fade">
+        <ul v-if="showList">
+          <li v-for="(item, index) in categoryes" :key="index">{{ item }}</li>
+        </ul>
+      </transition> -->
+
+      <fieldset>
+        <legend>Выбери категорию:</legend>
+
+        <div>
+          <input type="radio" id="huey" name="drone" value="risunok" ref="category"/>
+          <label for="huey">Рисунок</label>
+        </div>
+
+         <div>
+          <input type="radio" id="dewey" name="drone" value="zhivopis" ref="category"/>
+          <label for="dewey">Живопись</label>
+        </div> 
+
+        <!-- <div>
+          <input type="radio" id="louie" name="drone" value="louie" />
+          <label for="louie">Louie</label>
+        </div> -->
+
+        <!-- <div>
+          <input type="radio" id="louie" name="drone" value="louie" />
+          <label for="louie">Louie</label>
+        </div> -->
+
+        <!-- <div>
+          <input type="radio" id="louie" name="drone" value="louie" />
+          <label for="louie">Louie</label>
+        </div>  -->
+      </fieldset>
+
+      <!-- <input type="radio" id="one" value="Один" v-model="picked">
+      <label for="one">Один</label>
+      <br>
+      <input type="radio" id="two" value="Два" v-model="picked">
+      <label for="two">Два</label>
+      <br>
+      <span>Выбрано: {{ picked }}</span> -->
+
+
+      <input type="text" ref="caption" placeholder="Описание" />
       <button type="submit">Загрузить Фото!</button>
     </form>
   </div>
-
+  <div class="gallery-links">
+    <div class="link" @click="readDataFromDb('risunok')">Рисунок</div>
+    <!-- <div class="{ 'active-link': activeLink === 'link1' }" @click="handleClick('link1','risunok')">Ссылка 1</div>
+    <div class="{ 'active-link': activeLink === 'link2' }" @click="handleClick('link1','zhivopis')">Ссылка 1</div> -->
+    <div class="link" @click="readDataFromDb('zhivopis')">Живопись</div>
+    <div class="link">Смешанная техника</div>
+    <div class="link">Графика</div>
+    <div class="link">Акварель</div>
+  </div>
   <div class="gallery-container">
-    <div class="thumbnail">
-      <div v-for="(item, index) in images" :key="index" @click="openImage(item.path)">
-        <img :src='item.path' alt="Image" class="thumbnail">
-        <p>{{ item.caption }}</p>
-      </div>
+    <div class="thumbnail" v-for="(item, index) in images" :key="index" @click="openImage(item.path)">
+      <img :src="item.path" alt="Image" class="thumbnail-image">
+      <p>{{ item.caption }}</p>
     </div>
 
     <div v-if="selectedImage" class="modal">
@@ -21,6 +74,8 @@
         <img :src="selectedImage.path" alt="Full-size Image">
       </div>
     </div>
+
+
   </div>
 </template>
 
@@ -33,11 +88,9 @@ export default {
   name: 'GalleryBody',
   data() {
     return {
+      // showList: false,
+      // categoryes: ['Element 1', 'Element 2', 'Element 3', 'Element 4'],
       images: [
-        // { path: require('@/assets/background.jpg'), caption: 'Описание 1' },
-        // { path: require('@/assets/logo.png'), caption: 'Описание 2' },
-        // { path: 'path/to/image3.jpg', caption: 'Описание 3' },
-        // Добавьте другие изображения по аналогии
       ],
       selectedImage: null,
     };
@@ -47,14 +100,24 @@ export default {
       return this.$store.getters.isLogged;
     },
   },
-  mounted() {
-    // console.log(`the component is now mounted.`)
-    this.readDataFromDb();
-  },
+  // mounted() {
+  // console.log(`the component is now mounted.`)
+  // this.readDataFromDb();
+  // },
   methods: {
-    readDataFromDb() {
+    // handleClick(link, category) {
+    //   this.activeLink = link;
+    //   // Ваш код обработки нажатия
+    //   this.readDataFromDb(category);
+    // },
+    // toggleList() {
+    //     this.showList = !this.showList;
+    //   },
+    readDataFromDb(category) {
+      // console.log(category);
+      this.images = [];
       const db = getDatabase();
-      const picRef = dbRef(db, 'picData');
+      const picRef = dbRef(db, 'picData/' + category);
       // console.log(picRef);
 
       // Используйте onValue для отслеживания изменений в базе данных
@@ -67,6 +130,7 @@ export default {
         }
       });
     },
+
     // writePicDataToDb(imageUrl, caption) {
     //   const db = getDatabase();
     //   set(ref(db, 'picData/'), {
@@ -83,12 +147,13 @@ export default {
     async submitFile() {
       const fileInput = this.$refs.file;
       const caption = this.$refs.caption.value;
+      const category = this.$refs.category.value;
 
       const file = fileInput.files[0];
 
       if (file) {
         const storage = getStorage();
-        const storageRef = ref(storage, 'gallery/' + file.name);
+        const storageRef = ref(storage, 'gallery/' + category +'/' + file.name);
 
         try {
           // Upload file to Firebase Storage
@@ -105,7 +170,7 @@ export default {
           });
 
           const db = getDatabase();
-          const picRef = dbRef(db, 'picData');
+          const picRef = dbRef(db, 'picData/' + category);
           const newPostRef = pushDb(picRef);
           console.log(caption);
           set(newPostRef, {
@@ -123,32 +188,68 @@ export default {
 };
 </script>
 
-<style scoped>
-/* .thumbnail {
-  width: 50cap;
-  height: auto;
-  cursor: pointer;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-right: 10px;
-} */
+<style >
 .gallery-container {
   display: flex;
   flex-wrap: wrap;
-}
-.thumbnail {
-  width: 100%; /* Используйте 100% ширины для гибкости */
-  max-width: 200px; /* Максимальная ширина для каждой миниатюры */
-  height: auto;
-  cursor: pointer;
-  margin-right: 10px;
-  margin-bottom: 10px; /* Добавьте отступ снизу для создания новой строки */
-  box-sizing: border-box; /* Учтите padding и border в ширине элемента */
+  justify-content: flex-start;
+  /* Выравнивание контейнера слева */
 }
 
-form {
+.gallery-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  flex-wrap: wrap;
+  margin-right: 10%;
+}
+
+
+.link {
+  font-family: 'Exo 2', sans-serif;
+  font-size: large;
+  margin-left: 20px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.link:hover {
+    color: orange;
+    transition: 1s;
+    text-decoration: overline;
+}
+
+.link {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.thumbnail {
+  width: 200px;
+  /* Ширина миниатюры */
+  height: auto;
+  cursor: pointer;
+  margin: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Выравнивание по центру */
+}
+
+.thumbnail-image {
   width: 100%;
+  /* Заполнение ширины родительского контейнера */
+}
+
+.upload-form {
+  width: 100%;
+  max-width: 300px;
+  /* Ширина формы загрузки */
+  margin: 20px;
 }
 
 .modal {
@@ -178,3 +279,4 @@ form {
   cursor: pointer;
 }
 </style>
+

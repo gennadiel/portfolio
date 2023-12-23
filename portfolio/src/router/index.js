@@ -23,6 +23,20 @@ const routes = [
     name: 'gallery',
     component: GalleryView
   },
+  // {
+  //   path: '/gallery/subpage1',
+  //   name: 'gallery',
+  //   component: GalleryView
+  // },{
+  //   path: '/gallery',
+  //   name: 'gallery',
+  //   component: GalleryView
+  // },{
+  //   path: '/gallery',
+  //   name: 'gallery',
+  //   component: GalleryView
+  // },
+
   {
     path: '/publications',
     name: 'publications',
@@ -50,7 +64,7 @@ const router = createRouter({
 })
 // router.
 router.beforeEach(function () {
-  console.log('page changed');
+  // console.log('page changed');
   const auth = getAuth();
   onAuthStateChanged(auth, user => {
     if (user) {

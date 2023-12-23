@@ -2,7 +2,9 @@
   <div id="headerbar">
     <HeaderLogo />
     <LinksBar />
+
   </div>
+  
 </template>
 
 

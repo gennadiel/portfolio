@@ -1,26 +1,26 @@
 <template>
     <div id="linksbar">
-        <!-- <a href="/pages/bio.html"> -->
-            <div class="link" @click="$router.push('/bio')">
-                <p>Биография</p>
+        <div class="link" @click="$router.push('/bio')">
+            <p>Биография</p>
+        </div>
+        <div class="link" @click="$router.push('/publications')">
+            <p>Статьи</p>
+        </div>
+        <div class="link" @click="$router.push('/gallery')">
+            <p>Галерея</p> 
+        </div>
+        <!-- <div class="link" @mouseenter="showGallery" @mouseleave="hideGallery">
+            <p>Галерея</p> 
+            <div v-if="isGalleryVisible" id="gallerylinks">
+                
+                <router-link :to="/gallery/subpage1">Подстраница 1</router-link>
+                <router-link :to="/gallery/subpage2">Подстраница 2</router-link>
+                
             </div>
-        <!-- </a> -->
-        <!-- <a href="/pages/publications.html"> -->
-            <div class="link" @click="$router.push('/publications')">
-                <p>Статьи</p>
-            </div>
-        <!-- </a> -->
-        <!-- <a href="/pages/gallery.html"> -->
-            <div class="link" @click="$router.push('/gallery')">
-                <p>Галерея</p>
-            </div>
-        <!-- </a> -->
+        </div> -->
         <div class="link" v-if="isLogged" @click="logOut">
             <p>Выйти</p>
         </div>
-        <!-- <div class="link" v-if="!isLogged" @click="logIn">
-            <p>Войти</p>
-        </div> -->
     </div>
 </template>
 
@@ -29,7 +29,10 @@ import { getAuth } from "firebase/auth";
 export default {
     name: 'LinksBar',
     data() {
-        return {}
+        return {
+            isGalleryVisible: false,
+            activeLink: null,
+        }
     },
     computed: {
         isLogged() {
@@ -39,6 +42,12 @@ export default {
     methods: {
         logIn() {
             this.$router.push('/login')
+        },
+        showGallery() {
+            this.isGalleryVisible = true;
+        },
+        hideGallery() {
+            this.isGalleryVisible = false;
         },
         async logOut() {
             const auth = getAuth();
@@ -51,11 +60,21 @@ export default {
             this.$store.dispatch('logOut');
             this.$router.push('/');
         },
+        handleClick(link) {
+            this.activeLink = link;
+        },
     },
 }
 </script>
 
-<style>
+<style scoped>
+#links-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-right: 10%;
+}
+
 #linksbar {
     display: flex;
     flex-direction: row;
@@ -65,6 +84,13 @@ export default {
     flex-wrap: wrap;
     margin-right: 10%;
 }
+
+
+    /* #gallerylinks {
+  margin-top: 20px; /* Расстояние между linksbar и gallerylinks 
+  /* Другие стили для gallerylinks 
+} */
+
 
 .link {
     font-family: 'Exo 2', sans-serif;
