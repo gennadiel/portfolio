@@ -1,66 +1,68 @@
 <template>
   <div v-if="isLogged">
     <form @submit.prevent="submitFile" class="upload-form">
-      <input type="file" ref="file" />
+      <label for="avatar">Выбери фотографию:</label>
 
-      <!-- <button @click="toggleList">Категория</button>
+      <input type="file" id="avatar" name="avatar" accept="image/*" ref="file" />
 
-      <transition name="slide-fade">
-        <ul v-if="showList">
-          <li v-for="(item, index) in categoryes" :key="index">{{ item }}</li>
-        </ul>
-      </transition> -->
+      <!-- <fieldset>
+        <legend>Выбери категорию:</legend> -->
 
-      <fieldset>
-        <legend>Выбери категорию:</legend>
-
-        <div>
-          <input type="radio" id="huey" name="drone" value="risunok" ref="category"/>
-          <label for="huey">Рисунок</label>
-        </div>
-
-         <div>
-          <input type="radio" id="dewey" name="drone" value="zhivopis" ref="category"/>
-          <label for="dewey">Живопись</label>
-        </div> 
-
-        <!-- <div>
-          <input type="radio" id="louie" name="drone" value="louie" />
-          <label for="louie">Louie</label>
+      <!-- <div>
+          <input type="radio" id="risunok" name="drone" value="risunok" ref="category" />
+          <label for="risunok">Рисунок</label>
         </div> -->
 
-        <!-- <div>
-          <input type="radio" id="louie" name="drone" value="louie" />
-          <label for="louie">Louie</label>
+      <!-- <div>
+          <input type="radio" id="zhivopis" name="drone" value="zhivopis" ref="category" />
+          <label for="zhivopis">Живопись</label>
         </div> -->
 
-        <!-- <div>
-          <input type="radio" id="louie" name="drone" value="louie" />
-          <label for="louie">Louie</label>
-        </div>  -->
-      </fieldset>
+      <!-- <div>
+          <input type="radio" id="smeshannaya" name="drone" value="smeshannaya" ref="category" />
+          <label for="smeshannaya">Смешанная техника</label>
+        </div> -->
 
-      <!-- <input type="radio" id="one" value="Один" v-model="picked">
-      <label for="one">Один</label>
-      <br>
-      <input type="radio" id="two" value="Два" v-model="picked">
-      <label for="two">Два</label>
-      <br>
-      <span>Выбрано: {{ picked }}</span> -->
+      <!-- <div>
+          <input type="radio" id="grafika" name="drone" value="grafika" ref="category" />
+          <label for="grafika">Графика</label>
+        </div> -->
 
+      <!-- <div>
+          <input type="radio" id="akvarel" name="drone" value="akvarel" ref="category" />
+          <label for="akvarel">Акварель</label>
+        </div> -->
+      <!-- </fieldset> -->
+
+      <div>
+        <input type="radio" id="option1" v-model="selectedOption" value="Рисунок">
+        <label for="option1">Рисунок</label>
+
+        <input type="radio" id="option2" v-model="selectedOption" value="Живопись">
+        <label for="option2">Живопись</label>
+
+        <input type="radio" id="option3" v-model="selectedOption" value="Смешанная техника">
+        <label for="option3">Смешанная техника</label>
+
+        <input type="radio" id="option4" v-model="selectedOption" value="Графика">
+        <label for="option3">Графика</label>
+
+        <input type="radio" id="option5" v-model="selectedOption" value="Акварель">
+        <label for="option3">Акварель</label>
+
+        <p>Выбрана опция: {{ selectedOption }}</p>
+      </div>
 
       <input type="text" ref="caption" placeholder="Описание" />
       <button type="submit">Загрузить Фото!</button>
     </form>
   </div>
   <div class="gallery-links">
-    <div class="link" @click="readDataFromDb('risunok')">Рисунок</div>
-    <!-- <div class="{ 'active-link': activeLink === 'link1' }" @click="handleClick('link1','risunok')">Ссылка 1</div>
-    <div class="{ 'active-link': activeLink === 'link2' }" @click="handleClick('link1','zhivopis')">Ссылка 1</div> -->
-    <div class="link" @click="readDataFromDb('zhivopis')">Живопись</div>
-    <div class="link">Смешанная техника</div>
-    <div class="link">Графика</div>
-    <div class="link">Акварель</div>
+    <div class="link" @click="readDataFromDb('Рисунок')">Рисунок</div>
+    <div class="link" @click="readDataFromDb('Живопись')">Живопись</div>
+    <div class="link" @click="readDataFromDb('Смешанная техника')">Смешанная техника</div>
+    <div class="link" @click="readDataFromDb('Графика')">Графика</div>
+    <div class="link" @click="readDataFromDb('Акварель')">Акварель</div>
   </div>
   <div class="gallery-container">
     <div class="thumbnail" v-for="(item, index) in images" :key="index" @click="openImage(item.path)">
@@ -90,6 +92,7 @@ export default {
     return {
       // showList: false,
       // categoryes: ['Element 1', 'Element 2', 'Element 3', 'Element 4'],
+      selectedOption: null,
       images: [
       ],
       selectedImage: null,
@@ -130,14 +133,6 @@ export default {
         }
       });
     },
-
-    // writePicDataToDb(imageUrl, caption) {
-    //   const db = getDatabase();
-    //   set(ref(db, 'picData/'), {
-    //     imageUrl: imageUrl,
-    //     caption: caption,
-    //   });
-    // },
     openImage(path) {
       this.selectedImage = { path };
     },
@@ -147,13 +142,14 @@ export default {
     async submitFile() {
       const fileInput = this.$refs.file;
       const caption = this.$refs.caption.value;
-      const category = this.$refs.category.value;
+      // const category = this.$refs.category.value;
+      // console.log(category);
 
       const file = fileInput.files[0];
 
       if (file) {
         const storage = getStorage();
-        const storageRef = ref(storage, 'gallery/' + category +'/' + file.name);
+        const storageRef = ref(storage, 'gallery/' + this.selectedOption + '/' + file.name);
 
         try {
           // Upload file to Firebase Storage
@@ -170,7 +166,7 @@ export default {
           });
 
           const db = getDatabase();
-          const picRef = dbRef(db, 'picData/' + category);
+          const picRef = dbRef(db, 'picData/' + this.selectedOption);
           const newPostRef = pushDb(picRef);
           console.log(caption);
           set(newPostRef, {
@@ -216,15 +212,15 @@ export default {
 }
 
 .link:hover {
-    color: orange;
-    transition: 1s;
-    text-decoration: overline;
+  color: orange;
+  transition: 1s;
+  text-decoration: overline;
 }
 
 .link {
-    color: black;
-    font-weight: bold;
-    text-decoration: none;
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .thumbnail {
