@@ -1,6 +1,6 @@
 <template>
     <!-- LOGO -->
-    <span id="logo" @click="$router.push('/')">Геннадий Ельцов</span>
+    <span id="logo" @click="$router.push('/')">Ельцов Геннадий</span>
 </template>
 
 <script>
