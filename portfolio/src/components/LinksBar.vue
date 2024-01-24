@@ -1,14 +1,23 @@
 <template>
     <div id="linksbar">
+        <!-- <div class="link" @click="$router.push('/gallery')">
+            <p>Галерея</p>
+        </div> -->
+        <div class="link" @click="showGallery"><p>Галерея</p></div>
+
+            <ul v-if="isGalleryVisible">
+                <li>Элемент 1</li>
+                <li>Элемент 2</li>
+                <li>Элемент 3</li>
+            </ul>
+        </div>
         <div class="link" @click="$router.push('/bio')">
             <p>Биография</p>
         </div>
         <div class="link" @click="$router.push('/publications')">
             <p>Статьи</p>
         </div>
-        <div class="link" @click="$router.push('/gallery')">
-            <p>Галерея</p> 
-        </div>
+
         <!-- <div class="link" @mouseenter="showGallery" @mouseleave="hideGallery">
             <p>Галерея</p> 
             <div v-if="isGalleryVisible" id="gallerylinks">
@@ -21,7 +30,7 @@
         <div class="link" v-if="isLogged" @click="logOut">
             <p>Выйти</p>
         </div>
-    </div>
+    <!-- </div> -->
 </template>
 
 <script>
@@ -30,6 +39,7 @@ export default {
     name: 'LinksBar',
     data() {
         return {
+            // isDropdownVisible: false,
             isGalleryVisible: false,
             activeLink: null,
         }
@@ -69,10 +79,10 @@ export default {
 
 <style scoped>
 #links-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-right: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 10%;
 }
 
 #linksbar {
@@ -86,7 +96,7 @@ export default {
 }
 
 
-    /* #gallerylinks {
+/* #gallerylinks {
   margin-top: 20px; /* Расстояние между linksbar и gallerylinks 
   /* Другие стили для gallerylinks 
 } */
