@@ -54,11 +54,11 @@ export default {
             this.$router.push('/login')
         },
         showGallery() {
-            this.isGalleryVisible = true;
+            this.isGalleryVisible = !this.isGalleryVisible;
         },
-        hideGallery() {
-            this.isGalleryVisible = false;
-        },
+        // hideGallery() {
+        //     this.isGalleryVisible = false;
+        // },
         async logOut() {
             const auth = getAuth();
             console.log(auth);
@@ -77,7 +77,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 #links-container {
     display: flex;
     flex-direction: column;

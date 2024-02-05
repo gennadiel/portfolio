@@ -20,5 +20,6 @@ export default {
 img{
   width: 70%;
   align-self: center;
+  border-radius: 8px;
 }
 </style>
