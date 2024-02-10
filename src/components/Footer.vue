@@ -1,7 +1,7 @@
 
 <template>
     <div id="footer">
-        <p><span @click="moveToLogin">&copy;</span> 2023 Геннадий Ельцов <a href="https://www.facebook.com/profile.php?id=100001888112088&locale=ru_RU" target=”_blank”><img src="../assets/fb.png" alt="fb"></a></p>
+        <p><span @click="moveToLogin">&copy;</span> 2024 Геннадий Ельцов <a href="https://www.facebook.com/profile.php?id=100001888112088&locale=ru_RU" target=”_blank”><img src="../assets/fb.png" alt="fb"></a></p>
         
     </div>
 </template>

@@ -3,13 +3,14 @@
         <!-- <div class="link" @click="$router.push('/gallery')">
             <p>Галерея</p>
         </div> -->
-        <div class="link" @click="showGallery"><p>Галерея</p></div>
+        
+        <!-- <div class="link" @click="showGallery"><p>Галерея</p></div> -->
 
-            <ul v-if="isGalleryVisible">
+            <!-- <ul v-if="isGalleryVisible">
                 <li>Элемент 1</li>
                 <li>Элемент 2</li>
                 <li>Элемент 3</li>
-            </ul>
+            </ul> -->
         </div>
         <div class="link" @click="$router.push('/bio')">
             <p>Биография</p>
