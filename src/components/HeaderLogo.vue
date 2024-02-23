@@ -18,11 +18,4 @@ export default {
     margin: 30px;
     border-style: solid;
     cursor: pointer;
-
-    /* font-size: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh; */
 }</style>
