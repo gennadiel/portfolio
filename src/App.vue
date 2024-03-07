@@ -8,8 +8,9 @@
 
 <style>
 #app {
-  background-image: url('assets/background.jpg');
+  background-image: url('assets/bg.jpg');
   background-size: cover;
+  
   background-position: center;
   background-repeat: no-repeat;
   display: flex;
@@ -17,5 +18,8 @@
   justify-content: space-between;
   /* Set the minimum height to cover the entire viewport */
   min-height: 100vh;
+  min-width: 100vw;
+  /* min-width: 100%; */
+  /* margin: 0px !important; */
 }
 </style>

@@ -1,8 +1,9 @@
-
 <template>
     <div id="footer">
-        <p><span @click="moveToLogin">&copy;</span> 2024 Геннадий Ельцов <a href="https://www.facebook.com/profile.php?id=100001888112088&locale=ru_RU" target=”_blank”><img src="../assets/fb.png" alt="fb"></a></p>
-        
+        <p><span @click="moveToLogin">&copy;</span> 2024 Геннадий Ельцов <a
+                href="https://www.facebook.com/profile.php?id=100001888112088&locale=ru_RU" target=”_blank”><img
+                    src="../assets/fb.png" alt="fb"></a></p>
+
     </div>
 </template>
 
@@ -13,8 +14,8 @@ export default {
     components: {
 
     },
-    methods:{
-        moveToLogin(){
+    methods: {
+        moveToLogin() {
             this.$router.push('/login')
         }
     }
@@ -22,7 +23,7 @@ export default {
 </script>
 
 
-<style scoped>
+<style>
 #footer {
     /* Set the minimum height to cover the entire viewport excluding the footer */
     min-height: calc(100vh - 10%);
@@ -32,12 +33,25 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    color: white;
+
+    font-family: 'Miama';
+    font-style: italic;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 63px;
+    margin-left: 35px;
+    
+
 }
-#footer img{
-   /* size: 10px; */
-   width: 20px;
-   height: 20px;
-   padding-left: 30px;
+
+#footer img {
+    /* size: 10px; */
+    width: 25px;
+    height: 25px;
+    padding-left: 30px;
+}
+#footer p {
+    margin:0 !important;
 }
 </style>
-

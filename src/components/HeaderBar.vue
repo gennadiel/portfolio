@@ -2,11 +2,9 @@
   <div id="headerbar">
     <HeaderLogo />
     <LinksBar />
-
   </div>
-  
-</template>
 
+</template>
 
 <script>
 import HeaderLogo from "@/components/HeaderLogo.vue";
@@ -22,12 +20,13 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 #headerbar {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  padding-top: 10px;
+  margin-left:20px;
+  margin-top: 20px;
 }
 </style>
