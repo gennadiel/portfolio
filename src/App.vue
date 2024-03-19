@@ -19,7 +19,5 @@
   /* Set the minimum height to cover the entire viewport */
   min-height: 100vh;
   min-width: 100vw;
-  /* min-width: 100%; */
-  /* margin: 0px !important; */
 }
 </style>

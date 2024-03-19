@@ -1,43 +1,84 @@
 <template>
-  <HeaderBar />
-  <!-- <img src="@/assets/gen.jpg" alt="Gennadi" > -->
-  <div id="homebody">
-    <div id="left">
-      <div id="texts">
-        <p id="name">
-          Ельцов<br>
-          Геннадий<br>
-          Алексеевич
-        </p>
-        <div id="empty">
+
+  
+  <div  v-if="isPageLoaded">
+    <HeaderBar />
+    <!-- <img src="@/assets/gen.jpg" alt="Gennadi" > -->
+    <div id="homebody">
+
+      <div v-if="!isPageLoaded">
+    <LoadingScreen />
+  </div>
+
+      <div id="left">
+        <div id="texts">
+          <p id="name">
+            Ельцов<br>
+            Геннадий<br>
+            Алексеевич
+          </p>
+          <div id="empty">
+          </div>
+          <p id="text">
+            <span>„Живопись – это поэзия, которую видят, а поэзия – это живопись, которую слышат.“</span>
+          </p>
         </div>
-        <p id="text">
-          <span>„Живопись – это поэзия, которую видят, а поэзия – это живопись, которую слышат.“</span>
-        </p>
+      </div>
+      <div id="right">
+        <img src="@/assets/foto.png" alt="gennadi-photo" id="foto">
       </div>
     </div>
-    <div id="right">
-      <img src="@/assets/foto.png" alt="gennadi-photo" id="foto">
-    </div>
+    <PageFooter />
   </div>
-  <PageFooter />
+
 </template>
 
 <script>
 // @ is an alias to /src
 import HeaderBar from '@/components/HeaderBar.vue';
 import PageFooter from '@/components/Footer.vue';
+import LoadingScreen from "@/components/LoadingScreen.vue";
 export default {
   name: 'HomeView',
   components: {
-    HeaderBar, PageFooter
-  }
+    HeaderBar,
+    PageFooter,
+    LoadingScreen,
+  },
+  data() {
+    return {
+      isPageLoaded: false,
+    };
+  },
+  created() {
+    setTimeout(() => {
+      this.handlePageLoad();
+    }, 3000); // Пример: загрузка завершится через 3 секунды
+    // this.isPageLoaded= true;
+    // console.log('created');
+    // this.handlePageLoad();
+  },
+  // mounted() {
+  //   // document.addEventListener("DOMContentLoaded", this.handlePageLoad);
+
+  //   this.handlePageLoad();
+  //   // console.log('loaded');
+  // },
+  // beforeUnmount() {
+  //   document.removeEventListener("DOMContentLoaded", this.handlePageLoad);
+  // },
+  methods: {
+    handlePageLoad() {
+      this.isPageLoaded = true;
+      // console.log('true now');
+    },
+  },
 }
 </script>
 
 <style scoped>
 #foto {
-  
+
   width: 40vw;
 }
 
@@ -45,6 +86,7 @@ export default {
   /* display: flex; */
   width: 40vw;
 }
+
 #right {
   display: flex;
   /* width: 50vw; */
@@ -56,8 +98,9 @@ export default {
   flex-direction: column;
   /* width: 50vw; */
 }
-#empty{
-  height:20px;
+
+#empty {
+  height: 20px;
 }
 
 #name {
@@ -67,7 +110,7 @@ export default {
   font-size: 32px;
   line-height: 46px;
   color: white;
-  margin:0;
+  margin: 0;
 }
 
 #text {
@@ -88,10 +131,10 @@ export default {
   flex-direction: row;
   align-items: center;
   justify-content: space-around
-  /* position: absolute; */
-  /* min-width: 80vw;
+    /* position: absolute; */
+    /* min-width: 80vw;
   min-height: 80vw; */
-  /* left: 0px;
+    /* left: 0px;
   top: 100px; */
 }
 </style>
