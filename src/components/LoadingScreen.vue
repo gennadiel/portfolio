@@ -1,6 +1,8 @@
 <template>
     <div class="loading-screen">
-      <div class="spinner"></div>
+      <div class="spinner">
+      <img src="@/assets/palette.png" alt="spinner" id="img">
+      </div>
       <p>Пожалуйста, подождите, идет загрузка...</p>
     </div>
   </template>
@@ -19,8 +21,26 @@
     align-items: center;
   }
   
-  .spinner {
-    /* Ваша анимация загрузки или спиннер */
+  #img{
+    width: 30vw;
+    height: 30vw;
   }
+
+  .spinner {
+   
+    animation-name: rotate;
+    animation-duration: 1500ms;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+  }
+  @keyframes rotate {
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}
   </style>
   

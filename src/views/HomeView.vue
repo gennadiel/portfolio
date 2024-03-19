@@ -1,14 +1,16 @@
 <template>
 
-  
-  <div  v-if="isPageLoaded">
+  <div v-if="!isPageLoaded">
+    <LoadingScreen />
+  </div>
+
+  <div v-if="isPageLoaded" id="pageloaded">
     <HeaderBar />
+    
     <!-- <img src="@/assets/gen.jpg" alt="Gennadi" > -->
     <div id="homebody">
 
-      <div v-if="!isPageLoaded">
-    <LoadingScreen />
-  </div>
+
 
       <div id="left">
         <div id="texts">
@@ -30,6 +32,7 @@
     </div>
     <PageFooter />
   </div>
+  
 
 </template>
 
@@ -51,12 +54,7 @@ export default {
     };
   },
   created() {
-    setTimeout(() => {
       this.handlePageLoad();
-    }, 3000); // Пример: загрузка завершится через 3 секунды
-    // this.isPageLoaded= true;
-    // console.log('created');
-    // this.handlePageLoad();
   },
   // mounted() {
   //   // document.addEventListener("DOMContentLoaded", this.handlePageLoad);
@@ -136,5 +134,13 @@ export default {
   min-height: 80vw; */
     /* left: 0px;
   top: 100px; */
+}
+#pageloaded{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  min-height: 100vh;
+  min-width: 100vw;
 }
 </style>
