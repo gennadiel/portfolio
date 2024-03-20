@@ -27,6 +27,11 @@
         Подкаст на радио 4 (16.03.2019)
       </a>
     </li>
+    <li>
+      <a href="https://www.youtube.com/watch?v=5JdQqvbUxGA" class="link" target="_blank">
+        Интервью, которое было записано во время открытия художественной выставки «Святыня» (видео)
+      </a>
+    </li>
   </ul>
   <PageFooter />
 </template>
@@ -61,7 +66,7 @@ a {
 }
 a:hover {
   
-  color: burlywood;
+  color: rgb(31, 163, 48);
   
 }
 </style>

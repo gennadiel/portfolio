@@ -13,13 +13,13 @@
             </ul> -->
 
         <!-- <div> -->
-        <div @click="$router.push('/bio')" id="bio">
+        <div @click="$router.push('/bio')">
             <img src="@/assets/bio.png" class="img">
         </div>
-        <!-- <div class="link" @click="$router.push('/publications')">
-            <img src="@/assets/gallery.png" id="logo">
-        </div> -->
-        <div id="news" @click="$router.push('/publications')">
+        <div @click="$router.push('/gallery')">
+            <img src="@/assets/gallery.png" class="img">
+        </div>
+        <div @click="$router.push('/publications')">
             <img src="@/assets/news.png" class="img">
         </div>
         <!-- </div> -->
@@ -84,11 +84,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .img {
     width: 40px;
     height: 40px;
-    /* margin: 30px; */
     cursor: pointer;
 }
 
@@ -113,7 +112,6 @@ export default {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    /* margin: 30px; */
 }
 
 
@@ -143,28 +141,7 @@ export default {
     font-weight: bold;
     text-decoration: none;
 } */
-#bio {
-    /* position: absolute;
-    left: 16.11%;
-    right: 76.94%;
-    top: 0%;
-    bottom: 0%; */
-    /* width: 100px;
-height: 100px; */
 
-    margin: 0px;
-}
-
-#news {
-    /* position: absolute;
-    left: 30%;
-    right: 63.06%;
-    top: 0%;
-    bottom: 0%;
-    width: 40px;
-    height: 40px; */
-    /* margin: 30px; */
-}
 </style>
 /* Headbar */
 

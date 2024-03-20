@@ -14,7 +14,7 @@
 
       <div id="left">
         <div id="texts">
-          <p id="name">
+          <p id="name" class="animated-text">
             Ельцов<br>
             Геннадий<br>
             Алексеевич
@@ -27,7 +27,7 @@
         </div>
       </div>
       <div id="right">
-        <img src="@/assets/foto.png" alt="gennadi-photo" id="foto">
+        <!-- <img src="@/assets/foto.png" alt="gennadi-photo" id="foto"> -->
       </div>
     </div>
     <PageFooter />
@@ -142,5 +142,25 @@ export default {
 
   min-height: 100vh;
   min-width: 100vw;
+}
+.animated-text {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-align: left;
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>

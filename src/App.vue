@@ -4,7 +4,7 @@
 
 <style>
 #app {
-  background-image: url('assets/bg.jpg');
+  background-image: url('assets/bg2.jpg');
   background-size: cover;
   
   background-position: center;
