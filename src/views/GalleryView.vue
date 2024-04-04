@@ -1,7 +1,7 @@
 <template>
     <HeaderBar />
-    <!-- <Gallery /> -->
-    <p class="animated-text">Сожалеем, галерея находится в стадий разработки</p>
+    <Gallery />
+    <!-- <p class="animated-text">Сожалеем, галерея находится в стадий разработки</p> -->
     <PageFooter />
     <!-- Обязательно  -  ГАЛЕРЕЯ, в которой Несколько Папок  -  
     это "Рисунок", "Живопись ", "Смешанная техника", "Графика", "Акварель"... 
@@ -13,13 +13,13 @@
 <script>
 import HeaderBar from '@/components/HeaderBar.vue';
 import PageFooter from '@/components/Footer.vue';
-// import Gallery from '@/components/Gallery.vue'
+import Gallery from '@/components/Gallery.vue'
 export default {
     name: 'GalleryView',
     components: {
         HeaderBar, 
         PageFooter, 
-        // Gallery
+        Gallery
     }
 }
 </script>

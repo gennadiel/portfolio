@@ -57,14 +57,17 @@
       <button type="submit">Загрузить Фото!</button>
     </form>
   </div>
-  <div class="gallery-links">
+
+  <!-- <P id="welcoming">Добро пожаловать в галерею</P> -->
+
+  <!-- <div class="gallery-links">
     <div class="link" @click="readDataFromDb('Рисунок')">Рисунок</div>
     <div class="link" @click="readDataFromDb('Живопись')">Живопись</div>
     <div class="link" @click="readDataFromDb('Смешанная техника')">Смешанная техника</div>
     <div class="link" @click="readDataFromDb('Графика')">Графика</div>
     <div class="link" @click="readDataFromDb('Акварель')">Акварель</div>
   </div>
-  <div class="gallery-container">
+  
     <div class="thumbnail" v-for="(item, index) in images" :key="index" @click="openImage(item.path)">
       <img :src="item.path" alt="Image" class="thumbnail-image">
       <p>{{ item.caption }}</p>
@@ -76,9 +79,19 @@
         <img :src="selectedImage.path" alt="Full-size Image">
       </div>
     </div>
-
-
+  </div> -->
+  <div class="temp-container">
+    <div v-for="(image, index) in images" :key="index">
+      <img :src="image" alt="Image" class="temp-thumbnail">
+    </div>
   </div>
+  <div v-if="selectedImage" class="modal">
+    <div class="modal-content">
+      <span class="close" @click="closeModal">&times;</span>
+      <img :src="selectedImage.path" alt="Full-size Image">
+    </div>
+  </div>
+
 </template>
 
 <script>
@@ -98,6 +111,12 @@ export default {
       selectedImage: null,
     };
   },
+
+  //temp
+  created() {
+    this.loadImages();
+  },
+
   computed: {
     isLogged() {
       return this.$store.getters.isLogged;
@@ -108,6 +127,11 @@ export default {
   // this.readDataFromDb();
   // },
   methods: {
+    loadImages() {
+      const imagesContext = require.context('../assets/temp', false, /\.(png|jpe?g|svg)$/);
+      this.images = imagesContext.keys().map(imagesContext);
+      console.log(this.images);
+    },
     // handleClick(link, category) {
     //   this.activeLink = link;
     //   // Ваш код обработки нажатия
@@ -184,12 +208,26 @@ export default {
 };
 </script>
 
-<style >
+<style>
+#welcoming {
+  font-size: 50px;
+  text-align: center;
+  color: rgb(0, 255, 136);
+}
+
 .gallery-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
   /* Выравнивание контейнера слева */
+}
+
+
+.temp-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  /* background-color: #fff */
 }
 
 .gallery-links {
@@ -221,6 +259,28 @@ export default {
   color: black;
   font-weight: bold;
   text-decoration: none;
+}
+
+.temp-thumbnail {
+  width: 200px;
+  height: 200px;
+  /* cursor: pointer; */
+  margin: 5px;
+  box-sizing: border-box;
+  /* border-color: black;
+  border-width: 1px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+}
+
+.temp-thumbnail:hover {
+  /* opacity: 0.9; */
+  transition: 0.3s;
+  width: 210px;
+  height: 210px;
+  margin: 0px;
 }
 
 .thumbnail {
@@ -275,4 +335,3 @@ export default {
   cursor: pointer;
 }
 </style>
-

@@ -28,7 +28,7 @@
       </a>
     </li>
     <li>
-      <a href="https://www.youtube.com/watch?v=5JdQqvbUxGA" class="link" target="_blank">
+      <a href="https://www.youtube.com/watch?v=5JdQqvbUxGA" target="_blank">
         Интервью, которое было записано во время открытия художественной выставки «Святыня» (видео)
       </a>
     </li>
