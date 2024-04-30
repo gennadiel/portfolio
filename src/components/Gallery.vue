@@ -272,7 +272,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #fff;
+  background-color: none;
 }
 
 .temp-thumbnail:hover {
