@@ -82,7 +82,7 @@
   </div> -->
   <div class="temp-container">
     <div v-for="(image, index) in images" :key="index">
-      <img :src="image" alt="Image" class="temp-thumbnail">
+      <img :src="image" alt="Image" class="temp-thumbnail" @click="openFullImage(image)">
     </div>
   </div>
   <div v-if="selectedImage" class="modal">
@@ -131,6 +131,9 @@ export default {
       const imagesContext = require.context('../assets/temp', false, /\.(png|jpe?g|svg)$/);
       this.images = imagesContext.keys().map(imagesContext);
       console.log(this.images);
+    },
+    openFullImage(src){
+      window.open(src, '_blank');
     },
     // handleClick(link, category) {
     //   this.activeLink = link;
