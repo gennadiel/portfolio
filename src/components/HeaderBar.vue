@@ -14,9 +14,6 @@ export default {
   components: {
     HeaderLogo, LinksBar
   },
-  // beforeMount: ()=>{
-
-  // }
 }
 </script>
 

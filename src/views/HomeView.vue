@@ -15,9 +15,10 @@
       <div id="left">
         <div id="texts">
           <p id="name" class="animated-text">
-            Ельцов<br>
+            <img src="@/assets/logo1.png" alt="" id="logo1">
+            <!-- Ельцов<br>
             Геннадий<br>
-            Алексеевич
+            Алексеевич -->
           </p>
           <div id="empty">
           </div>
@@ -144,6 +145,8 @@ export default {
   min-width: 100vw;
 }
 .animated-text {
+ 
+
   font-size: 24px;
   font-weight: bold;
   color: #333;
@@ -151,6 +154,12 @@ export default {
   opacity: 0;
   transform: translateY(50px);
   animation: fadeInUp 1s ease-out forwards;
+}
+
+#logo1{
+  border-radius: 20%;
+  width: 70vw;
+  height: auto;
 }
 
 @keyframes fadeInUp {
